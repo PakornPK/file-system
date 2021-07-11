@@ -1,15 +1,14 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
 
-	"github.com/jimmiepr/file-system/file"
+	"github.com/jimmiepr/file-system/handlefunc"
 )
 
 func main() {
-	Fl := file.GetList("./mockup")
 
-	for i := 0; i < len(Fl); i++ {
-		fmt.Printf("File : %s\n", Fl[i])
-	}
+	http.HandleFunc("/dirfile", handlefunc.GetFileList)
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
